@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Feliz San Valentín</title>
+
+    <!-- ✅ ESTILO EXTRA: solo para que el texto sea desplazable -->
+    <style>
+        /* Caja desplazable del mensaje */
+        .scroll-message {
+            max-height: 220px;          /* ajusta si quieres más/menos altura */
+            overflow-y: auto;
+            padding-right: 8px;         /* espacio para que no choque con la barra */
+            margin-top: 10px;
+            line-height: 1.5;
+            -webkit-overflow-scrolling: touch; /* scroll suave en móviles */
+        }
+
+        /* Opcional: una barrita más linda (Chrome/Edge) */
+        .scroll-message::-webkit-scrollbar {
+            width: 8px;
+        }
+        .scroll-message::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background: rgba(0,0,0,0.25);
+        }
+        .scroll-message::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.06);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ✅ AUDIO (mismo archivo) -->
+    <audio id="bgMusic" src="fondo.mp3" loop preload="auto"></audio>
+
+    <div class="valentines-day">
+        <div class="envelope"></div>
+        <div class="heart"></div>
+        <div class="text">¡FELIZ DÍA DE<br>SAN VALENTÍN!</div>
+        <div class="front"></div>
+    </div>
+
+    <div id="card">
+        <div class="side one">
+            <i class="fas fa-heart"></i>
+        </div>
+
+        <div class="side two">
+            <h2>🌷🌷🌷</h2>
+            <p>Querida Aida,</p>
+
+            <!-- ✅ AQUÍ VA EL TEXTO LARGO, AHORA DESPLAZABLE -->
+            <div class="scroll-message">
+                <p>
+                    Hoy quiero agradecerle al destino por cruzar nuestros caminos y regalarme el milagro de encontrarte.
+                    Eres lo más inesperado, lo más loco y maravilloso que me ha sucedido en la vida. Desde que llegaste,
+                    cada instante a tu lado se volvió inolvidable, lleno de risas, complicidad y un amor que no deja de crecer.
+                </p>
+
+                <p>
+                    A veces siento que te conozco de toda la vida, como si nuestras almas ya se hubieran elegido mucho antes
+                    de coincidir en este mundo. Hay algo tan profundo y tan nuestro, que me hace pensar que nací para ser tuyo
+                    y tú mía, para caminar juntos aprendiendo, soñando y construyendo.
+                </p>
+
+                <p>
+                    Sigamos tomados de la mano hoy y siempre, eligiéndonos cada mañana, cuidando con ternura y valentía todo
+                    lo que nos ha costado edificar. Prometo proteger este amor, honrarlo y hacerlo florecer cada día.
+                </p>
+
+                <p>
+                    Siempre serás mi corazón entero, mi esposa ante los ojos del mundo y el sueño más hermoso que me acompaña
+                    cuando duermo.
+                </p>
+            </div>
+
+            <p>¡Feliz San Valentín!</p>
+
+            <p>
+                Con cariño,<br>
+                Whitmer Boa
+            </p>
+        </div>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- ✅ Continuidad de música -->
+    <script>
+        const music = document.getElementById("bgMusic");
+        if (music) {
+            const saved = localStorage.getItem("musicTime");
+            if (saved) {
+                const t = parseFloat(saved);
+                if (!Number.isNaN(t)) music.currentTime = t;
+            }
+
+            music.loop = true;
+            music.volume = 0.6;
+            music.play().catch(() => { });
+
+            setInterval(() => {
+                if (!music.paused) {
+                    localStorage.setItem("musicTime", String(music.currentTime));
+                }
+            }, 1000);
+        }
+    </script>
+
+</body>
+
+</html>
